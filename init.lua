@@ -1,12 +1,25 @@
-previous_State = 0
+--	状态灯闪烁，tmr_id = 0
+Lighton = true
+gpio.mode(4, gpio.OUTPUT)
+tmr.alarm(0, 1000, 1, function ()
+    Lighton = not Lighton
+    if Lighton then
+        gpio.write(4, gpio.HIGH)
+    else
+        gpio.write(4, gpio.LOW)
+    end
+end)
+
+--	WiFi状态判断，tmr_id = 1
+Previous_WiFiState = false
 tmr.alarm(1, 1000, 1, function ()
     status = wifi.sta.status()
 if(status == 1) then
     tmr.start(0)
-    if(previous_State == 1) then
+    if(Previous_WiFiState == true) then
         print("Lost WiFi connect,reconnecting...")
     else
-        previous_State = 1
+        Previous_WiFiState = true
         print("Connecting WiFi...")
     end
 end
@@ -23,32 +36,26 @@ if(status == 5) then
 end
 end)
 
-tmr.alarm(3, 30000, 1, function ()
+--	WiFi连接成功后置异常监测，tmr_id = 2
+tmr.alarm(2, 30000, 1, function ()
 if(wifi.sta.status() ~= 5) then
     tmr.start(1)
     tmr.stop(3)
 end
 end)
 
-lighton = true
-gpio.mode(4,gpio.OUTPUT)
-tmr.alarm(0, 1000, 1, function ()
-    lighton = not lighton
-    if lighton then
-        gpio.write(4, gpio.HIGH)
-    else
-        gpio.write(4, gpio.LOW)
-    end
-end)
-
+--	WiFi连接设置
+SSID = ""
+Password = ""
 wifi.setmode(wifi.STATION)
 wifi.sta.config(SSID, Password)
 wifi.sta.autoconnect(1)
 
-gpio.mode(0,gpio.OUTPUT)
+-- 服务端
+gpio.mode(0, gpio.OUTPUT)
 srv = net.createServer(net.TCP)
 srv:listen(80,function(conn)
-    conn:on("receive", function(client,request)
+    conn:on("receive", function(client, request)
     print(request);
     local buf = "";
     local _, _, method, path, vars = string.find(request, "([A-Z]+) (.+)?(.+) HTTP");
@@ -76,3 +83,4 @@ srv:listen(80,function(conn)
     collectgarbage();
     end)
 end)
+
