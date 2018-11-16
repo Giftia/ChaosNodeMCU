@@ -86,8 +86,8 @@ end)
 
 --  连接酱菜创客，心跳包tmr_id = 3
 key = ""
-sid = 004
-nid = 000
+sid = "004"
+nid = "000"
 conncloud = net.createConnection(net.TCP, 0)
 conncloud:connect(8266, "www.jcckiot.com")
 conncloud:on("connection", function(conn, request)
