@@ -6,4 +6,4 @@
     * ESP8266Flasher_x32(x64).exe 为NodeMCU烧录软件（必需）
     * ESPlorer.zip 为编辑器、控制台兼代码刷入器（必需）
     * nodemcu_float_0.9.6-dev_20150704.bin 为本程序所基于的固件（必需）
-[！[HitCount（http://hits.dwyl.io/giftina/chaosnodemcu.svg）（http://hits.dwyl.io/giftina/chaosnodemcu）
+    [![HitCount](http://hits.dwyl.io/giftina/chaosnodemcu.svg)](http://hits.dwyl.io/giftina/chaosnodemcu)
