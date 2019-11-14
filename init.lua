@@ -89,7 +89,7 @@ key = ""
 sid = "004"
 nid = "000"
 conncloud = net.createConnection(net.TCP, 0)
-conncloud:connect(8266, "www.jcckiot.com")
+conncloud:connect(8266, "112.74.59.29")
 conncloud:on("connection", function(conn, request)
     conn:send("mode=bind&apikey="..key.."&data={ck001000bind}")
     tmr.alarm(3, 60000, 1, function()
