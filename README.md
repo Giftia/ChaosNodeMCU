@@ -1,7 +1,5 @@
-[![HitCount](http://hits.dwyl.io/Giftia/ChaosNodeMCU.svg)](http://hits.dwyl.io/Giftia/ChaosNodeMCU)
 # ChaosNodeMCU
 ### 本程序适用于ESP8266，开箱即烧即用，实现WiFi局域网以及互联网环境下远程控制板载指示灯的明灭以及操作GPIO0的高电平，简明的lua语言。本项目为硬件端，与全端[ChatDACS](https://github.com/Giftia/ChatDACS/)联动为一个完整的门禁项目。远期计划完善为智能家居系统。低耦合，可脱离全端自机建立服务端独立运行。
-### [DEMO:http://39.108.239.49](http://39.108.239.49/)
 
     文件用途：
     /Tools 文件夹内：
